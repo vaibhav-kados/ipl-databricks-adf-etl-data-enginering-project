@@ -25,9 +25,8 @@ The project follows the Medallion architecture with three layers:
    - Uses **Get Metadata** and **If Condition** activity to check whether **both files (`matches` & `deliveries`)** are present.  
    - If yes → Extracts the file names and passes them as **parameters** to a Databricks job.  
 
-   📌 **Screenshot:** ADF Master Pipeline
+   ** ADF Master Pipeline
    ![ADF_master_pipeline](images/1.adf_master_pipeline.png)  
-   _Attach here_: `images/1.adf_master_pipeline.png`
 
 3. **Databricks Job Workflow**
    - **Step 1: Create External Location**  
