@@ -99,11 +99,11 @@ ipl-databricks-adf-etl-data-enginering-project/
 
 **Batsman Performance Summary Table Initial Load**
 
-![catalog_schema](with_initial_load/with_initial_load.png)
+![with_initial_load](images/with_initial_load.png)
 
 **Batsman Performance Summary Table Incremental Load**  
 
-![catalog_schema](with_initial_load/with_incremental_load.png)
+![with_incremental_load](images/with_incremental_load.png)
 
 ---
 
