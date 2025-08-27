@@ -79,7 +79,7 @@ ipl-databricks-adf-etl-data-engineering-project/
 │── adf/ # ADF pipeline JSON exports
 │── architecture/ # Architecture diagrams
 │── databricksNotebooks/ # Databricks notebooks (ETL code)
-│── images/ # Screenshots (pipelines, notebooks, dashboards)
+│── images/ # Screenshots (pipelines, notebooks)
 │── sourceData/ # Raw input files (matches, deliveries)
 │── README.md # Project documentation
 ```
@@ -130,4 +130,4 @@ ipl-databricks-adf-etl-data-engineering-project/
 
 **Vaibhav Kados**  
 - Azure Data Engineer | Data Enthusiast  
-- [LinkedIn](https://www.linkedin.com) | [GitHub](https://github.com)
+- [LinkedIn]([https://www.linkedin.com](https://www.linkedin.com/in/vaibhav-kados-45689020a/)) | [GitHub]([https://github.com](https://github.com/vaibhav-kados))
