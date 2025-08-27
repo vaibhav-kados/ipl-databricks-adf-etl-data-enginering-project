@@ -1,0 +1,24 @@
+{
+    "name": "StorageEventTrigger",
+    "properties": {
+        "annotations": [],
+        "runtimeState": "Started",
+        "pipelines": [
+            {
+                "pipelineReference": {
+                    "referenceName": "master_pipeline",
+                    "type": "PipelineReference"
+                }
+            }
+        ],
+        "type": "BlobEventsTrigger",
+        "typeProperties": {
+            "blobPathBeginsWith": "/bronze/blobs/",
+            "ignoreEmptyBlobs": true,
+            "scope": "/subscriptions/676fd8a1-a608-4be9-9d94-4d34848e4ca9/resourceGroups/ipl_dataset_analysis_databricks_project_rg/providers/Microsoft.Storage/storageAccounts/datalake2ipldataanalysis",
+            "events": [
+                "Microsoft.Storage.BlobCreated"
+            ]
+        }
+    }
+}

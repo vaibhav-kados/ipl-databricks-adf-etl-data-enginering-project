@@ -1,0 +1,137 @@
+{
+    "name": "master_pipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "If Condition1",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "Check Files",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@and(\n    contains(string(activity('Check Files').output.childItems), 'matches'),\n    contains(string(activity('Check Files').output.childItems), 'deliveries')\n)",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "Data Transformation Job",
+                            "type": "DatabricksJob",
+                            "dependsOn": [
+                                {
+                                    "activity": "Filter Deliveries File",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "policy": {
+                                "timeout": "0.12:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "jobId": "276052572742094",
+                                "jobParameters": {
+                                    "matchesFile": {
+                                        "value": "@activity('Filter Matches File').output.value[0].name",
+                                        "type": "Expression"
+                                    },
+                                    "deliveriesFile": {
+                                        "value": "@activity('Filter Deliveries File').output.value[0].name",
+                                        "type": "Expression"
+                                    }
+                                }
+                            },
+                            "linkedServiceName": {
+                                "referenceName": "AzureDatabricks1",
+                                "type": "LinkedServiceReference"
+                            }
+                        },
+                        {
+                            "name": "Filter Matches File",
+                            "type": "Filter",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "items": {
+                                    "value": "@activity('Check Files').output.childItems",
+                                    "type": "Expression"
+                                },
+                                "condition": {
+                                    "value": "@contains(toLower(item().name), 'matches')",
+                                    "type": "Expression"
+                                }
+                            }
+                        },
+                        {
+                            "name": "Filter Deliveries File",
+                            "type": "Filter",
+                            "dependsOn": [
+                                {
+                                    "activity": "Filter Matches File",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "items": {
+                                    "value": "@activity('Check Files').output.childItems",
+                                    "type": "Expression"
+                                },
+                                "condition": {
+                                    "value": "@contains(toLower(item().name), 'deliveries')",
+                                    "type": "Expression"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Check Files",
+                "type": "GetMetadata",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DelimitedText1",
+                        "type": "DatasetReference"
+                    },
+                    "fieldList": [
+                        "childItems"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "DelimitedTextReadSettings"
+                    }
+                }
+            }
+        ],
+        "annotations": [],
+        "lastPublishTime": "2025-08-24T08:03:05Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}
