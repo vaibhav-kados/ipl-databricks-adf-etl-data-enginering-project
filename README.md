@@ -14,7 +14,7 @@ The project follows the Medallion architecture with three layers:
 3. **Gold Layer** – Stores aggregated and business-ready data (e.g., Batsman performance summary).
 
 📌 **Architecture Diagram**  
-_Attach here_: `images/architecture.png`
+_Attach here_: `architecture/ipl_de_architecture.png`
 
 ---
 
@@ -26,7 +26,7 @@ _Attach here_: `images/architecture.png`
    - If yes → Extracts the file names and passes them as **parameters** to a Databricks job.  
 
    📌 **Screenshot:** ADF Master Pipeline  
-   _Attach here_: `images/adf_master_pipeline.png`
+   _Attach here_: `images/1.adf_master_pipeline.png`
 
 2. **Databricks Job Workflow**
    - **Step 1: Create External Location**  
