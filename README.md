@@ -14,7 +14,7 @@ The project follows the Medallion architecture with three layers:
 3. **Gold Layer** – Stores aggregated and business-ready data (e.g., Batsman performance summary).
 
 📌 **Architecture Diagram**  
-_Attach here_: `architecture/ipl_de_architecture.png`
+![Architecture Diagram](architecture/ipl_de_architecture.png)  
 
 ---
 
