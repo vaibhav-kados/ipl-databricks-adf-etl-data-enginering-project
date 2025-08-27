@@ -25,38 +25,52 @@ The project follows the Medallion architecture with three layers:
    - Uses **Get Metadata** and **If Condition** activity to check whether **both files (`matches` & `deliveries`)** are present.  
    - If yes → Extracts the file names and passes them as **parameters** to a Databricks job.  
 
-   ** ADF Master Pipeline
+   📌 ** ADF Master Pipeline
    ![ADF_master_pipeline](images/1.adf_master_pipeline.png)  
 
 3. **Databricks Job Workflow**
+
+   ![databricks_etl_job](images/2.databricks_etl_job.png)
+   
    - **Step 1: Create External Location**  
      Configures access to ADLS Gen2.
-     📌 Screenshot: `images/databricks_external_location.png`
+
+   ![databricks_external_location](images/3.create_external_location.png)
 
    - **Step 2: Create Catalog & Schemas**  
      Creates:
      - Catalog: `ipl_data_analysis_catalog`  
-     - Schemas: `bronze`, `silver`, `gold`  
-     📌 Screenshot: `images/databricks_catalog_schema.png`
+     - Schemas: `bronze`, `silver`, `gold`
+       
+   ![create_catalog_schema](images/4.create_catalog_schema.png)
 
    - **Step 3: Create Bronze Tables**  
      Raw files (`matches`, `deliveries`) are stored as **Delta tables** in the bronze layer.  
-     Metadata columns added: `data_source`, `ingestion_date`  
-     📌 Screenshot: `images/databricks_bronze_tables.png`
+     Metadata columns added: `data_source`, `ingestion_date`
+     
+   ![create_bronze_table_matches](images/5.1.create_bronze_table_matches.png)
+   ![create_bronze_table_deliveries](images/5.2.create_bronze_table_deliveries.png)
 
    - **Step 4: Create Silver Tables**  
      - Incremental load applied  
        - `matches` → Incremental on `match_id`  
        - `deliveries` → Incremental on (`match_id`, `inning`, `over`, `ball`)  
-     - Null handling, cleaning & schema enforcement performed.  
-     📌 Screenshot: `images/databricks_silver_tables.png`
+     - Null handling, cleaning & schema enforcement performed.
+       
+   ![create_sliver_table_matches_transformed](images/6.1.create_sliver_table_matches_transformed.png)
+   ![create_silver_table_deliveries_transformed](images/6.2.create_silver_table_deliveries_transformed.png)
 
    - **Step 5: Create Gold Tables**  
      - Analytical tables prepared (example: **Batsman Performance Summary**)  
        - Total runs  
        - Balls faced  
-       - Strike rate & other metrics  
-     📌 Screenshot: `images/databricks_gold_tables.png`
+       - Strike rate & other metrics
+         
+   ![create_gold_tables](images/7.create_gold_tables.png)
+
+   ![catalog_schema](images/8.catalog_schema.png)
+
+   
 
 ---
 
@@ -83,29 +97,13 @@ ipl-databricks-adf-etl-data-enginering-project/
 
 ## 📊 Final Output (Gold Layer)
 
-Example: **Batsman Performance Summary Table**  
-- `batsman_name`  
-- `total_runs`  
-- `balls_faced`  
-- `strike_rate`  
-- `4s` / `6s` count  
-- `matches_played`  
+**Batsman Performance Summary Table Initial Load**
 
-📌 Screenshot: Gold Table Preview  
-_Attach here_: `images/batsman_summary.png`
+![catalog_schema](with_initial_load/with_initial_load.png)
 
----
+**Batsman Performance Summary Table Incremental Load**  
 
-## 📷 Screenshots to Attach
-
-1. `images/architecture.png` – Overall Architecture  
-2. `images/adf_master_pipeline.png` – ADF Master Pipeline  
-3. `images/databricks_external_location.png` – External Location Setup  
-4. `images/databricks_catalog_schema.png` – Catalog & Schema Creation  
-5. `images/databricks_bronze_tables.png` – Bronze Tables in Databricks  
-6. `images/databricks_silver_tables.png` – Silver Tables in Databricks  
-7. `images/databricks_gold_tables.png` – Gold Tables in Databricks  
-8. `images/batsman_summary.png` – Gold Table Example (Batsman Performance)
+![catalog_schema](with_initial_load/with_incremental_load.png)
 
 ---
 
