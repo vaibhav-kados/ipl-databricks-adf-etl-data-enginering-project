@@ -70,20 +70,21 @@ The project follows the Medallion architecture with three layers:
 
    ![catalog_schema](images/8.catalog_schema.png)
 
-   
-
-
+---
 
 ## 🗂 Project Structure
 
+```
 ipl-databricks-adf-etl-data-engineering-project/
-│
-├── adf/ # ADF pipeline JSON exports
-├── architecture/ # Architecture diagrams
-├── databricksNotebooks/ # Databricks notebooks (ETL code)
-├── images/ # Screenshots (pipelines, notebooks, dashboards)
-├── sourceData/ # Raw input files (matches, deliveries)
-└── README.md # Project documentation
+│── adf/ # ADF pipeline JSON exports
+│── architecture/ # Architecture diagrams
+│── databricksNotebooks/ # Databricks notebooks (ETL code)
+│── images/ # Screenshots (pipelines, notebooks, dashboards)
+│── sourceData/ # Raw input files (matches, deliveries)
+│── README.md # Project documentation
+```
+---
+
 
 ## ⚙️ Technologies Used
 
