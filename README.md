@@ -130,4 +130,4 @@ ipl-databricks-adf-etl-data-engineering-project/
 
 **Vaibhav Kados**  
 - Azure Data Engineer | Data Enthusiast  
-- [LinkedIn]([https://www.linkedin.com](https://www.linkedin.com/in/vaibhav-kados-45689020a/)) | [GitHub]([https://github.com](https://github.com/vaibhav-kados))
+- [LinkedIn](https://www.linkedin.com](https://www.linkedin.com/in/vaibhav-kados-45689020a/) | [GitHub](https://github.com](https://github.com/vaibhav-kados)
